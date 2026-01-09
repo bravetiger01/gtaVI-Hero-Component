@@ -24,3 +24,18 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+/* app/globals.css */
+
+.mask-text {
+  font-size: 20vw;
+  font-weight: 900;
+  line-height: 1;
+  color: transparent;
+  background-image: url("/gta-hero.jpg");
+  background-size: cover;
+  background-position: center;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
