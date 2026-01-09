@@ -3,7 +3,23 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-export default function HeroScroll() {
+interface HeroScrollProps {
+  heroImage: string;
+  bigText: string;
+  smallText: string;
+  mainTitle: string;
+  releaseLabel?: string;
+  releaseDate: string;
+}
+
+export default function HeroScroll({
+  heroImage,
+  bigText,
+  smallText,
+  mainTitle,
+  releaseLabel = "COMING",
+  releaseDate,
+}: HeroScrollProps) {
   const ref = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -45,7 +61,7 @@ export default function HeroScroll() {
 
         {/* BACKGROUND IMAGE */}
         <motion.img
-          src="/gta-hero.jpg"
+          src={heroImage}
           alt="Hero"
           style={{ opacity: imageOpacity }}
           className="absolute inset-0 w-full h-full object-cover"
@@ -57,30 +73,31 @@ export default function HeroScroll() {
           className="absolute inset-0 bg-black"
         />
 
-        {/* VI TEXT - Starts huge from outside, scales down, becomes white */}
+        {/* BIG TEXT - Starts huge from outside, scales down, becomes white */}
         <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
           <motion.h1
             style={{ 
               scale: viScale, 
               opacity: viOpacity,
-              color: viColor
+              WebkitTextStroke: "2px white",
+              WebkitTextFillColor: "transparent",
             }}
-            className="text-[10rem] font-black tracking-tighter leading-none -mt-48 "
+            className="text-[10rem] font-black tracking-tighter leading-none -mt-48"
           >
-            VI
+            {bigText}
           </motion.h1>
         </div>
 
-        {/* GRAND THEFT AUTO TEXT */}
+        {/* MAIN TITLE TEXT */}
         <motion.div
           style={{ opacity: gtaOpacity, y: gtaY, scale: gtaScale }}
           className="absolute inset-0 flex flex-col items-center justify-center gap-3"
         >
           <h3 className="text-lg font-bold text-white tracking-widest">
-            VI
+            {smallText}
           </h3>
           <h2 className="text-6xl md:text-7xl font-bold text-white tracking-wide">
-            GRAND THEFT AUTO
+            {mainTitle}
           </h2>
         </motion.div>
 
@@ -90,9 +107,9 @@ export default function HeroScroll() {
           className="absolute inset-0 flex items-center justify-center pt-64"
         >
           <div className="text-center">
-            <p className="text-xl md:text-2xl text-gray-400 mb-3">COMING</p>
+            <p className="text-xl md:text-2xl text-gray-400 mb-3">{releaseLabel}</p>
             <p className="text-3xl md:text-4xl font-bold text-white">
-              NOVEMBER 19, 2026
+              {releaseDate}
             </p>
           </div>
         </motion.div>
