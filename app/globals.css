@@ -27,15 +27,12 @@ body {
 
 
 /* app/globals.css */
-
 .mask-text {
-  font-size: 20vw;
+  font-size: 22vw;
   font-weight: 900;
   line-height: 1;
-  color: transparent;
-  background-image: url("/gta-hero.jpg");
-  background-size: cover;
-  background-position: center;
-  -webkit-background-clip: text;
-  background-clip: text;
+  color: white;        /* SOLID WHITE */
+  white-space: nowrap;
+  pointer-events: none;
 }
+
