@@ -71,6 +71,30 @@ body {
   background-repeat: no-repeat;
   background-size: 700%;
   background-position: 25% 50%;
+  position: relative;
+}
+
+/* White overlay that appears ONLY at the end */
+.logo-mask::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  mask: var(--logo-mask);
+  -webkit-mask: var(--logo-mask);
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-size: 2000vw;
+  -webkit-mask-size: 2000vw;
+  mask-position: 25% 50%;
+  -webkit-mask-position: 25% 50%;
+  opacity: 0;
+  animation: white-overlay linear;
+  animation-timeline: scroll();
+  pointer-events: none;
 }
 
 @keyframes mask-resize {
@@ -86,12 +110,24 @@ body {
   }
 }
 
+@keyframes white-overlay {
+  0% {
+    opacity: 0;
+  }
+  98% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .background {
   background-image: var(--background-image);
   background-size: cover;
   background-position: center 80%;
   background-repeat: no-repeat;
-  background-attachment: fixed; /* KEY FIX: Keeps the background image fixed */
+  background-attachment: fixed;
   height: 130%;
   overflow: hidden;
   animation: background-resize ease-in-out;
@@ -247,6 +283,10 @@ section {
 @supports not (animation-timeline: scroll()) {
   .logo-mask {
     animation: none;
+  }
+  
+  .logo-mask::after {
+    display: none;
   }
   
   .background {
