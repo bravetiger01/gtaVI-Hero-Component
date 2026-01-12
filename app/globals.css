@@ -1,3 +1,32 @@
+:root {
+  --logo-gradient: url("/globe.svg");
+  --logo-mask: url("/next.svg");
+  --background-image: url("/gta-hero.jpg");
+  --play-button: url("/file.svg");
+  --watch-trailer-logo: url("/window.svg");
+  --background-color: #131319;
+  --text-color: #f8f8f8;
+  --secondary-logo-size: max(5vw, 10vh);
+}
+
+@font-face {
+  font-family: "GTAArtDeco";
+  src: url("https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/fonts/20f419b63a6f61085c182ec2f1cd8fa0.woff")
+    format("woff");
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+html::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-snap-type: y mandatory;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,55 +34,231 @@
 }
 
 body {
-  background: #000;
-  color: white;
-  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: GTAArtDeco, sans-serif;
+  letter-spacing: 0.2rem;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
-.hero {
-  height: 100vh;
-  width: 100%;
-  background: url("/gta-hero.jpg") center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.page-container {
   position: relative;
+}
+
+.content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.logo-mask {
+  height: 100vh;
+  width: 100vw;
+  mask: var(--logo-mask);
+  -webkit-mask: var(--logo-mask);
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-size: 700%;
+  -webkit-mask-size: 700%;
+  mask-position: 25% 50%;
+  -webkit-mask-position: 25% 50%;
+  animation: mask-resize ease-in-out reverse;
+  scroll-snap-type: y mandatory;
+  animation-timeline: scroll();
+  
+  background-image: var(--logo-gradient);
+  background-repeat: no-repeat;
+  background-size: 700%;
+  background-position: 25% 50%;
+}
+
+@keyframes mask-resize {
+  0% {
+    mask-size: 25%;
+    -webkit-mask-size: 25%;
+    background-size: 25%;
+  }
+  100% {
+    mask-size: 2000vw;
+    -webkit-mask-size: 2000vw;
+    background-size: 2000vw;
+  }
+}
+
+.background {
+  background-image: var(--background-image);
+  background-size: cover;
+  background-position: center 80%;
+  height: 130%;
   overflow: hidden;
+  background-repeat: no-repeat;
+  animation: background-resize ease-in-out;
+  animation-timeline: scroll();
 }
 
-.gta-text {
-  font-size: clamp(4rem, 12vw, 12rem);
-  font-weight: 900;
-  text-align: center;
-  line-height: 0.9;
-
-  background: url("/gta-hero.jpg") center/cover no-repeat;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-
-  will-change: transform, opacity;
+@keyframes background-resize {
+  0% {
+    height: 130%;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    height: 100%;
+    opacity: 0;
+  }
 }
 
-.coming {
+section {
+  scroll-snap-align: end;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+.content > .slide-2-text {
   position: absolute;
-  bottom: 20%;
-  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(0, -50%);
+  animation: show linear;
+  animation-timeline: scroll();
   opacity: 0;
+  z-index: -1;
+  padding-right: 300px;
 }
 
-.coming span {
-  display: block;
-  font-size: 1.2rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  opacity: 0.8;
+@keyframes show {
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-.coming strong {
+.slide-2-text > a::before {
+  content: "▶";
+  margin-right: 10px;
+}
+
+.slide-2-text > a {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.slide-2-text > h1 {
+  margin-top: 0;
   font-size: 3rem;
-  font-weight: 800;
-  background: linear-gradient(90deg, #8b5cf6, #d946ef);
-  -webkit-background-clip: text;
-  color: transparent;
+  margin-bottom: 1.5rem;
+}
+
+.slide-2-text > p,
+.slide-2-text > a {
+  letter-spacing: 0.05rem;
+}
+
+.slide-2-text > p {
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.content > .slide-1 {
+  position: absolute;
+  left: 50%;
+  animation: hide linear;
+  animation-timeline: scroll();
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.content > .play-button {
+  top: 60%;
+  transform: translate(-50%, -50%) scale(0.6);
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+}
+
+.content > .scroll-logo {
+  bottom: 0%;
+}
+
+.scroll-logo > .container {
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.container > img {
+  height: var(--secondary-logo-size);
+  width: auto;
+}
+
+.container > p {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  font-size: 0.8rem;
+}
+
+.slide-1 > p {
+  margin: 0;
+  padding: 0;
+}
+
+.content > .scroll-arrow {
+  bottom: 2%;
+  opacity: 0.5;
+  transform: translate(-50%, -50%) scale(0.65);
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .slide-2-text {
+    padding: 0 2rem !important;
+    left: 0 !important;
+    transform: translateY(-50%) !important;
+  }
+
+  .slide-2-text > h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Fallback for browsers that don't support animation-timeline */
+@supports not (animation-timeline: scroll()) {
+  .logo-mask {
+    animation: none;
+  }
+  
+  .background {
+    animation: none;
+  }
+  
+  .slide-1 {
+    animation: none;
+  }
+  
+  .slide-2-text {
+    animation: none;
+  }
 }
