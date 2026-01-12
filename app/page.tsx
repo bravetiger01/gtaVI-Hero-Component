@@ -1,20 +1,10 @@
-// app/page.tsx
-"use client";
+import Hero from "@/components/Hero"
 
-import HeroScroll from "@/components/HeroScroll";
-
-export default function Page() {
+export default function Home() {
   return (
-    <main>
-      <HeroScroll
-        heroImage="/gta-hero.jpg"
-        bigText="VI"
-        smallText="VI"
-        mainTitle="GRAND THEFT AUTO"
-        releaseLabel="COMING"
-        releaseDate="NOVEMBER 19, 2026"
-      />
-
-    </main>
-  );
+    <>
+      <Hero />
+      <div style={{ height: "200vh" }} />
+    </>
+  )
 }

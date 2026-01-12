@@ -1,38 +1,59 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #000;
+  color: white;
+  font-family: "Inter", sans-serif;
 }
 
+.hero {
+  height: 100vh;
+  width: 100%;
+  background: url("/gta-hero.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
 
-/* app/globals.css */
-.mask-text {
-  font-size: 22vw;
+.gta-text {
+  font-size: clamp(4rem, 12vw, 12rem);
   font-weight: 900;
-  line-height: 1;
-  color: white;        /* SOLID WHITE */
-  white-space: nowrap;
-  pointer-events: none;
+  text-align: center;
+  line-height: 0.9;
+
+  background: url("/gta-hero.jpg") center/cover no-repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+
+  will-change: transform, opacity;
 }
 
+.coming {
+  position: absolute;
+  bottom: 20%;
+  text-align: center;
+  opacity: 0;
+}
+
+.coming span {
+  display: block;
+  font-size: 1.2rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.coming strong {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #8b5cf6, #d946ef);
+  -webkit-background-clip: text;
+  color: transparent;
+}
