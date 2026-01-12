@@ -2,8 +2,6 @@
   --logo-gradient: url("/globe.svg");
   --logo-mask: url("/next.svg");
   --background-image: url("/gta-hero.jpg");
-  --play-button: url("/file.svg");
-  --watch-trailer-logo: url("/window.svg");
   --background-color: #131319;
   --text-color: #f8f8f8;
   --secondary-logo-size: max(5vw, 10vh);
@@ -92,9 +90,10 @@ body {
   background-image: var(--background-image);
   background-size: cover;
   background-position: center 80%;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* KEY FIX: Keeps the background image fixed */
   height: 130%;
   overflow: hidden;
-  background-repeat: no-repeat;
   animation: background-resize ease-in-out;
   animation-timeline: scroll();
 }
